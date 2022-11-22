@@ -12,6 +12,7 @@ class DetailsNewsProvider extends ChangeNotifier {
     fetchNewsByPagination();
   }
 
+
   Future fetchNewsByPagination() async {
     isLoading = true;
     notifyListeners();
