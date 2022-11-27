@@ -35,7 +35,7 @@ class _ShowNewsWidgetState extends State<ShowNewsWidget> {
             child: SmartRefresher(
               controller: _refreshController!,
               onRefresh: () {
-                provider.onRefresh(_refreshController!);
+                // provider.onRefresh(_refreshController!);
               },
               child: ListView.builder(
                   itemCount: provider.newsItemList.length,
@@ -77,18 +77,25 @@ class _ShowNewsWidgetState extends State<ShowNewsWidget> {
                               child: Container(
                                   margin: EdgeInsets.symmetric(vertical: 8),
                                   height: 60,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYaQE2_T9cdK8PauC6EUySqnrZ0Wtb6xzm3g&usqp=CAU",
-                                      fit: BoxFit.fitHeight,
-                                      errorBuilder: (ctx, obj, stack) {
-                                        return Container(
-                                            child: Image.asset(
-                                          "assets/images/placeholder.png",
-                                          fit: BoxFit.fitHeight,
-                                        ));
-                                      },
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      provider.newsItemList.clear();
+                                      print("object:  ${ provider.newsItemList.length}");
+                                      setState((){});
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.network(
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYaQE2_T9cdK8PauC6EUySqnrZ0Wtb6xzm3g&usqp=CAU",
+                                        fit: BoxFit.fitHeight,
+                                        errorBuilder: (ctx, obj, stack) {
+                                          return Container(
+                                              child: Image.asset(
+                                            "assets/images/placeholder.png",
+                                            fit: BoxFit.fitHeight,
+                                          ));
+                                        },
+                                      ),
                                     ),
                                   )),
                             )

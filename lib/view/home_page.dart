@@ -17,8 +17,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final PublishNewsProvider _provider = PublishNewsProvider();
+  late final PublishNewsProvider? _provider;
   final DetailsNewsProvider _detailsProvider = DetailsNewsProvider();
+
+  iniState(){
+    super.initState();
+    _provider!=PublishNewsProvider();
+  }
 
 
   @override

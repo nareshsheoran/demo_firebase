@@ -1,5 +1,6 @@
 
 import 'package:demo_firebase/model/news_item.dart';
+import 'package:demo_firebase/service/news_firebase_service.dart';
 import 'package:demo_firebase/service/service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -14,11 +15,14 @@ class DetailsNewsProvider extends ChangeNotifier {
 
 
   Future fetchNewsByPagination() async {
+    // newsItemList.clear();
     isLoading = true;
     notifyListeners();
-    newsItemList = await NewsService().fetchNewsByPagination();
+    // newsItemList = await NewsService().fetchNewsByPagination();
+    newsItemList = await NewsFirebaseService().fetchNewsByPagination();
     isLoading = false;
     notifyListeners();
+    return newsItemList;
   }
 
   void onRefresh(RefreshController refreshController) async {

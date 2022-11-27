@@ -34,9 +34,11 @@ class NewsService {
 
   Future<List<NewsItem>> fetchNewsByPagination() async {
     if (isNetConnected) {
-
-      List<NewsItem> itemList = await NewsFirebaseService().fetchNewsByPagination();
+      newsItemList.clear();
+      List<NewsItem> itemList =
+          await NewsFirebaseService().fetchNewsByPagination();
       newsItemList.addAll(itemList);
+      print("lenn: ${newsItemList.length}");
       return newsItemList;
     } else {
       // Fluttertoast.showToast("Internet not available");
@@ -44,7 +46,7 @@ class NewsService {
     return newsItemList;
   }
 
-  // Future removeNewsItem(NewsItem newsItem) async{
-  //   return await NewsFirebaseService().removeNewsItem(newsItem);
-  // }
+// Future removeNewsItem(NewsItem newsItem) async{
+//   return await NewsFirebaseService().removeNewsItem(newsItem);
+// }
 }
